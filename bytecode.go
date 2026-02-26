@@ -284,6 +284,11 @@ func inferModuleName(mod *ImmutableMap) string {
 }
 
 func init() {
+	defer func() {
+		if err := recover(); err != nil {
+			println("panic")
+		}
+	}()
 	gob.Register(&parser.SourceFileSet{})
 	gob.Register(&parser.SourceFile{})
 	gob.Register(&Array{})
